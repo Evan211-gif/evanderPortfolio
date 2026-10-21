@@ -238,12 +238,28 @@ img {
 .home__career {
   display: block;
   color: #e4a109;
-  line-height: 0.1rem;
-  margin-bottom: 2rem;
+  line-height: 1.5;
+  margin-bottom: 1rem;
 }
 
 .home__description {
   color: #a2acbd;
+  line-height: 1.6;
+}
+
+.home__button {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem;
+  margin-top: 1.25rem;
+}
+
+.home__hire,
+.home__download {
+  display: inline-flex;
+  align-items: center;
+  text-decoration: none;
 }
 
 .home button {
@@ -599,9 +615,7 @@ img {
     font-size: 1.25rem;
     margin-bottom: 0.3rem;
   }
-  .home__title {
-    font-size: 2.1rem;
-  }
+
   .home__career {
     font-size: 1.2rem;
     margin-top: 0.5rem;
@@ -658,4 +672,136 @@ img {
   .home__img {
     height: 670px;
   }
+}
+
+/* iPhone 16 responsive layout */
+@media screen and (max-width: 480px) {
+  .home {
+    width: 100%;
+    overflow: hidden;
+  }
+
+  .home__container {
+    width: 100%;
+    height: auto;
+    min-height: calc(100vh - 3rem);
+    padding: 2rem 1rem;
+    box-sizing: border-box;
+    align-content: start;
+    row-gap: 1.5rem;
+  }
+
+.home__description {
+  font-size: 1rem;
+  line-height: 1.6;
+  margin-top: 1rem;
+  max-width: 100%;
+}
+
+  .home__img {
+    max-width: 100%;
+  }
+
+  .home__img img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+  }
+  .home__subtitle {
+  margin-bottom: 0.5rem;
+}
+
+
+/* iPhone 16 layout */
+@media screen and (max-width: 480px) {
+  .home {
+    width: 100%;
+    margin-bottom: 2rem;
+    overflow: hidden;
+  }
+
+  .home__container {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: flex-start;
+    gap: 1rem;
+    width: 100%;
+    height: auto;
+    min-height: calc(100vh - 3rem);
+    padding: 1.5rem 1.25rem 2rem;
+    box-sizing: border-box;
+  }
+
+  .home__data {
+    position: relative;
+    width: 100%;
+    padding: 1rem 0;
+    box-sizing: border-box;
+  }
+
+  .home__greeting {
+    font-size: 1rem;
+    line-height: 1.5;
+    margin-bottom: 0.5rem;
+  }
+
+  .home__title {
+    display: block;
+    font-size: 2rem;
+    font-weight: 900;
+    line-height: 1.2;
+    padding: 0;
+    margin: 0 0 0.75rem;
+    overflow-wrap: break-word;
+    word-break: normal;
+  }
+
+  .home__career {
+    display: block;
+    font-size: 1rem;
+    line-height: 1.5;
+    margin: 0 0 1rem;
+  }
+
+  .home__description {
+    font-size: 0.938rem;
+    line-height: 1.6;
+    margin: 0 0 1rem;
+    max-width: 100%;
+  }
+
+  .home__button {
+    margin-top: 1.25rem;
+  }
+
+  .home__img {
+    position: relative;
+    top: auto;
+    right: auto;
+    bottom: auto;
+    width: 100%;
+    height: auto;
+    max-width: 100%;
+    align-self: center;
+    text-align: center;
+  }
+
+  .home__img img {
+    display: block;
+    width: min(240px, 100%);
+    height: auto;
+    max-width: 100%;
+    margin: 0 auto;
+    object-fit: contain;
+  }
+
+  .home__social {
+    flex-direction: row;
+    align-items: center;
+    flex-wrap: wrap;
+    width: 100%;
+    margin-top: 1.5rem;
+  }
+}
 }

@@ -4,25 +4,25 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta property="og:title" content="OSSPH Freefolio - Indify Template"/>
-    <meta property="og:description" content="100% FREE Professional Portfolio Templates - Indify Template"/>
+    <meta property="og:title" content="{{ $profile->name }} | Portfolio"/>
+    <meta property="og:description" content="{{ $profile->intro }}"/>
     <meta property="og:type" content="website" />
     <meta
         property="og:image"
-        content="https://freefolio.web.app/images/indify.png"
+        content="{{ asset($profile->profile_image_path ?? 'indify/assets/img/profile.png') }}"
     />
     <meta property="og:image:type" content="image/png" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:image:alt" content="OSSPH Freefolio">
-    <meta name="twitter:title" content="OSSPH Freefolio - Indify Template" />
-    <meta name="twitter:description" content="100% FREE Professional Portfolio Templates - Indify Template" />
-    <title>Indify a Freefolio template by OSSPH</title>
+    <meta name="twitter:image:alt" content="{{ $profile->name }}">
+    <meta name="twitter:title" content="{{ $profile->name }} | Portfolio" />
+    <meta name="twitter:description" content="{{ $profile->intro }}" />
+    <title>{{ $profile->name }} | Portfolio</title>
     <!-- Favicons -->
     <link
       rel="shortcut icon"
-      href="./assets/img/favicon-32x32.png"
+      href="{{ asset('indify/assets/img/favicon-32x32.png') }}"
       type="image/x-icon"
     />
     <!-- CSS Stylesheet -->
@@ -42,11 +42,14 @@
     <!-- Header -->
     <header class="l-header" id="header">
       <nav class="nav bd-container">
-        <a href="#" class="nav__logo">LOGO</a>
+        <a href="#home" class="nav__logo">{{ $profile->name }}</a>
         <div class="nav__menu" id="nav-menu">
           <ul class="nav__list">
             <li class="nav__item">
               <a href="#home" class="nav__link">Home</a>
+            </li>
+            <li class="nav__item">
+              <a href="#about" class="nav__link">About</a>
             </li>
             <li class="nav__item">
               <a href="#services" class="nav__link">Services</a>
@@ -73,183 +76,100 @@
             <span>HELLO,</span>
           </div>
           <div class="home__title" data-aos="fade-up">
-            <h1>I'm&nbsp;Evander&nbsp;Dayoc</h1>
+            <h1>I'm&nbsp;{{ $profile->name }}</h1>
           </div>
           <div class="home__career" data-aos="fade-up">
-            <p>IT Student | Aspiring Software Developer</p>
+            <p>{{ $profile->headline }}</p>
           </div>
           <div class="home__description" data-aos="fade-up">
-  <p>
-    I'm an Information Technology student learning to build practical
-    software solutions. I'm currently developing my skills in web
-    development, databases, and programming through hands-on projects.
-  </p>
-</div>
+            <p>{{ $profile->intro }}</p>
+          </div>
           <div class="home__button">
-            <button class="home__hire" data-aos="fade-up">HIRE ME</button>
-            <a href="#" download="">
-              <button class="home__download" data-aos="fade-up">DOWNLOAD CV</button>
-            </a>
+            <a class="home__hire" href="#contact" data-aos="fade-up">HIRE ME</a>
+            @if ($profile->cv_path)
+              <a class="home__download" href="{{ asset($profile->cv_path) }}" download data-aos="fade-up">DOWNLOAD CV</a>
+            @endif
           </div>
           <div class="home__social" data-aos="fade-up">
-            <a
-  <div class="home__social" data-aos="fade-up">
-  <a href="https://www.facebook.com/YOUR_USERNAME"
-     class="home__icon" target="_blank" rel="noopener noreferrer"
-     aria-label="Facebook">
-    <i class="fab fa-facebook"></i>
-  </a>
-
-  <a href="https://github.com/Evan211-gif"
-     class="home__icon" target="_blank" rel="noopener noreferrer"
-     aria-label="GitHub">
-    <i class="fab fa-github"></i>
-  </a>
-
-  <a href="https://www.linkedin.com/in/YOUR_USERNAME"
-     class="home__icon" target="_blank" rel="noopener noreferrer"
-     aria-label="LinkedIn">
-    <i class="fab fa-linkedin"></i>
-  </a>
-
-  <a href="mailto:YOUR_EMAIL@example.com"
-     class="home__icon"
-     aria-label="Email">
-    <i class="fas fa-envelope"></i>
-  </a>
-</div>
+            @foreach ($socialLinks as $socialLink)
+              <a href="{{ $socialLink->url }}" class="home__icon" aria-label="{{ $socialLink->label }}" @if (!str_starts_with($socialLink->url, 'mailto:')) target="_blank" rel="noopener noreferrer" @endif>
+                <i class="{{ $socialLink->icon_class }}"></i>
+              </a>
+            @endforeach
+          </div>
           <div class="home__img" data-aos="fade-up">
-            <img src="{{ asset('indify/assets/img/profile.png') }}"
-     alt="Evander Dayoc"
-     class="home-image" />
+            @if ($profile->profile_image_path)
+              <img src="{{ asset($profile->profile_image_path) }}" alt="{{ $profile->name }}" class="home-image" />
+            @endif
           </div>
         </div>
       </div>
+    </section>
+
+    <section class="services" id="about">
+      <h2 class="section-title" data-aos="fade-up">ABOUT ME</h2>
+      <p class="section-subtitle" data-aos="fade-up">{{ $profile->about }}</p>
     </section>
 
     <!-- Services -->
     <section class="services" id="services">
       <h2 class="section-title" data-aos="fade-up">SERVICES</h2>
       <p class="section-subtitle" data-aos="fade-up">
-  Here are the technical skills I'm developing through my Information
-  Technology studies and hands-on software projects.
-</p>
+        Here are the technical skills I'm developing through my Information Technology studies and hands-on software projects.
+      </p>
       <div class="services__container bd-container bd-grid">
-        <div class="services__data" data-aos="fade-up">
-          <div class="services__img">
-            <img src="{{ asset('indify/assets/img/web-design.svg') }}" alt="" />
+        @foreach ($services as $service)
+          <div class="services__data" data-aos="fade-up">
+            @if ($service->icon_path)
+              <div class="services__img">
+                <img src="{{ asset($service->icon_path) }}" alt="" />
+              </div>
+            @endif
+            <h3 class="services__title">{{ $service->title }}</h3>
+            <p class="services__description">{{ $service->description }}</p>
           </div>
-          <h3 class="services__title">Web Development</h3>
-          <p class="services__description">
-            Building responsive websites and learning to develop
-  full-stack applications using Laravel and modern web technologies.
-          </p>
-        </div>
-
-        <div class="services__data" data-aos="fade-up">
-          <div class="services__img">
-            <img src="{{ asset('indify/assets/img/web-development.svg') }}" alt="" />
-          </div>
-          <h3 class="services__title">Database Management</h3>
-          <p class="services__description">
-            Learning to design, organize, and manage relational databases
-  using MySQL for practical applications.
-          </p>
-        </div>
-
-        <div class="services__data" data-aos="fade-up">
-          <div class="services__img">
-           <img src="{{ asset('indify/assets/img/graphics-design.svg') }}" alt="" />
-          </div>
-          <h3 class="services__title">Programming</h3>
-          <p class="services__description">
-            Practicing programming fundamentals, problem-solving,
-  and application development through hands-on projects.
-          </p>
-        </div>
-
-        <div class="services__data" data-aos="fade-up">
-          <div class="services__img">
-         <img src="{{ asset('indify/assets/img/soft-skills.svg') }}" alt="" />
-          </div>
-          <h3 class="services__title">Software Projects</h3>
-          <p class="services__description">
-            Creating practical systems that solve real-world problems
-  while improving my development and technical skills.
-          </p>
-        </div>
+        @endforeach
       </div>
     </section>
     <!-- Portfolio -->
     <section class="portfolio" id="portfolio">
       <h2 class="section-title" data-aos="fade-up">PORTFOLIO</h2>
       <p class="section-subtitle" data-aos="fade-up">
-          A collection of my learning projects, practical applications,
-  and experiments in software development.
+        A collection of my learning projects, practical applications, and experiments in software development.
       </p>
       <div class="portfolio__container bd-container bd-grid swiper" data-aos="fade-up">
         <div class="swiper-wrapper">
-          <div class="portfolio__data swiper-slide">
-           <h3 class="portfolio__title">Student Enrollment System</h3>
-
-<div class="portfolio__img">
-  <img src="https://dummyimage.com/640x360/e5e7eb/374151&text=Student+Enrollment+System" alt="Student Enrollment System preview" />
-</div>
-
-<p class="portfolio__description">
-  A student enrollment system built with Laravel, Angular,
-  and MySQL to manage student registration and enrollment workflows.
-</p>
-
-<a class="portfolio__link" href="#" target="_blank">
-  <span>Project in development <i class="fas fa-arrow-circle-right"></i></span>
-</a>
-          </div>
-          <div class="portfolio__data swiper-slide">
-            <h3 class="portfolio__title">Laravel Portfolio Website</h3>
-
-<div class="portfolio__img">
-  <img src="https://dummyimage.com/640x360/e5e7eb/374151&text=Laravel+Portfolio" alt="Laravel Portfolio Website preview" />
-</div>
-
-<p class="portfolio__description">
-  A personal portfolio website built with Laravel, featuring
-  my background, learning journey, and software projects.
-</p>
-
-<a class="portfolio__link" href="#" target="_blank">
-  <span>View portfolio <i class="fas fa-arrow-circle-right"></i></span>
-</a>
-          </div>
-          <div class="portfolio__data swiper-slide">
-           <h3 class="portfolio__title">Future Project</h3>
-
-<div class="portfolio__img">
-  <img src="https://dummyimage.com/640x360/e5e7eb/374151&text=Future+Project" alt="Future Project preview" />
-</div>
-
-<p class="portfolio__description">
-  More practical software projects will be added here as I
-  continue learning programming, databases, and web development.
-</p>
-
-<a class="portfolio__link" href="#contact">
-  <span>Coming soon <i class="fas fa-arrow-circle-right"></i></span>
-</a>
-          </div>
+          @foreach ($projects as $project)
+            <div class="portfolio__data swiper-slide">
+              <h3 class="portfolio__title">{{ $project->title }}</h3>
+              @if ($project->image_url)
+                <div class="portfolio__img">
+                  <img src="{{ $project->image_url }}" alt="{{ $project->title }} preview" />
+                </div>
+              @endif
+              <p class="portfolio__description">{{ $project->description }}</p>
+              @if ($project->project_url)
+                <a class="portfolio__link" href="{{ $project->project_url }}" @if (!str_starts_with($project->project_url, '#')) target="_blank" rel="noopener noreferrer" @endif>
+                  <span>{{ $project->link_label ?? 'View project' }} <i class="fas fa-arrow-circle-right"></i></span>
+                </a>
+              @elseif ($project->link_label)
+                <span class="portfolio__link">
+                  <span>{{ $project->link_label }} <i class="fas fa-arrow-circle-right"></i></span>
+                </span>
+              @endif
+            </div>
+          @endforeach
         </div>
         <div class="swiper-pagination"></div>
       </div>
     </section>
     <!-- Footer -->
-    <footer id="contact">
-      <footer class="footer section">
-        <div class="footer__container bd-grid">
-         <h3 class="footer__copy">
-  © 2026 Evander Dayoc. Built with Laravel.
-</h3>
-        </div>
-      </footer>
+    <footer id="contact" class="footer section">
+      <div class="footer__container bd-grid">
+        <h3 class="footer__copy">
+          © {{ now()->year }} {{ $profile->name }}. Built with Laravel.
+        </h3>
+      </div>
     </footer>
     <!-- Swiper JS -->
     <script src="https://unpkg.com/swiper@7/swiper-bundle.min.js"></script>
