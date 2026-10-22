@@ -19,22 +19,22 @@
     <meta name="twitter:title" content="{{ $profile->name }} | Portfolio" />
     <meta name="twitter:description" content="{{ $profile->intro }}" />
     <title>{{ $profile->name }} | Portfolio</title>
-    <!-- Favicons -->
+  
     <link
       rel="shortcut icon"
       href="{{ asset('indify/assets/img/favicon-32x32.png') }}"
       type="image/x-icon"
     />
-    <!-- CSS Stylesheet -->
+    
     <link rel="stylesheet" href="{{ asset('indify/assets/css/style.css') }}" />
-    <!-- fontawesome CDN -->
+    
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
     />
-    <!-- Swiper JS -->
+    
     <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css"/>
-    <!-- AOS -->
+   
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
   
   </head>
@@ -171,11 +171,11 @@
         </h3>
       </div>
     </footer>
-    <!-- Swiper JS -->
+    
     <script src="https://unpkg.com/swiper@7/swiper-bundle.min.js"></script>
-    <!-- JS script -->
+    
     <script src="{{ asset('indify/assets/js/script.js') }}"></script>
-    <!-- AOS script -->
+    
     <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
     <script>       
       AOS.init({
